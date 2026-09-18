@@ -18,8 +18,8 @@ function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
-  // Basic lang detection
-  const isAr = typeof document !== "undefined" && document.dir === "rtl";
+  // Basic lang detection (defaults to Arabic matching root document rtl)
+  const isAr = typeof document !== "undefined" ? document.dir === "rtl" : true;
   const lang = isAr ? "ar" : "en";
   const currency = isAr ? "ر.س" : "SAR";
 

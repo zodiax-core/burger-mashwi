@@ -78,10 +78,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "برجر مشوي | Burger Mashwi" },
-      { name: "description", content: "Ø¨Ø±Ø¬Ø± Ù…Ø´ÙˆÙŠ Ø·Ø§Ø²Ø¬ ÙˆÙˆØ¬Ø¨Ø§Øª Ù…Ø­Ø¶Ù‘Ø±Ø© Ø¹Ù†Ø¯ Ø§Ù„Ø·Ù„Ø¨." },
+      { name: "description", content: "برجر مشوي طازج ووجبات محضّرة عند الطلب بأعلى معايير الجودة." },
       { name: "author", content: "Burger Mashwi" },
-      { property: "og:title", content: "Ø¨Ø±Ø¬Ø± Ù…Ø§Ø´ÙˆÙŠ" },
-      { property: "og:description", content: "Ø¨Ø±Ø¬Ø± Ù…Ø´ÙˆÙŠ Ø·Ø§Ø²Ø¬ ÙˆÙˆØ¬Ø¨Ø§Øª Ù…Ø­Ø¶Ù‘Ø±Ø© Ø¹Ù†Ø¯ Ø§Ù„Ø·Ù„Ø¨." },
+      { property: "og:title", content: "برجر مشوي | Burger Mashwi" },
+      { property: "og:description", content: "برجر مشوي طازج ووجبات محضّرة عند الطلب بأعلى معايير الجودة." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -105,11 +105,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         {children}
         <Scripts />
       </body>
