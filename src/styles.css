@@ -1,0 +1,174 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Design system definition for Burger Mashwi.
+ * Food delivery aesthetic: Rich deep red, warm cream background, crisp white cards.
+ * No neon / AI glows.
+ */
+
+@theme inline {
+  --font-sans: "Tajawal", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Tajawal", -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
+  --radius-4xl: calc(var(--radius) + 20px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-burgundy: var(--burgundy);
+  --color-burgundy-foreground: var(--burgundy-foreground);
+  --color-warm: var(--warm);
+  --color-warm-foreground: var(--warm-foreground);
+  --color-footer: var(--footer);
+  --color-footer-foreground: var(--footer-foreground);
+  --color-footer-muted: var(--footer-muted);
+  --color-footer-border: var(--footer-border);
+  --color-overlay: var(--overlay);
+  --shadow-soft: 0 4px 16px -2px rgba(90, 14, 24, 0.06);
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.04);
+  --shadow-food: 0 16px 30px -10px rgba(185, 28, 28, 0.25);
+  --shadow-drawer: 0 -10px 40px rgba(0, 0, 0, 0.2);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: #FDF9F3; /* Warm inviting cream background */
+  --foreground: #1E1A18; /* Deep natural charcoal */
+  --card: #FFFFFF;
+  --card-foreground: #1E1A18;
+  --popover: #FFFFFF;
+  --popover-foreground: #1E1A18;
+  --primary: #C5161D; /* Cluckin style bold appetizing red */
+  --primary-foreground: #FFFFFF;
+  --secondary: #F7EFE3; /* Warm soft beige */
+  --secondary-foreground: #8C1D24;
+  --muted: #F3ECE1;
+  --muted-foreground: #786C64;
+  --accent: #EFE4D2;
+  --accent-foreground: #6B1119;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #EFE6D8;
+  --input: #EFE6D8;
+  --ring: #C5161D;
+  --highlight: #B31219;
+  --highlight-foreground: #FFFFFF;
+  --burgundy: #4A0B12; /* Rich dark banner burgundy */
+  --burgundy-foreground: #FFFFFF;
+  --warm: #FAF2E6;
+  --warm-foreground: #1E1A18;
+  --footer: #250B0F; /* Deep rich dark burgundy-charcoal */
+  --footer-foreground: #FAF4EB;
+  --footer-muted: #B8A8A2;
+  --footer-border: #42181F;
+  --overlay: rgba(18, 5, 7, 0.65);
+}
+
+.dark {
+  --background: #140E10;
+  --foreground: #F6F3EE;
+  --card: #201719;
+  --card-foreground: #F6F3EE;
+  --popover: #201719;
+  --popover-foreground: #F6F3EE;
+  --primary: #D31D25;
+  --primary-foreground: #FFFFFF;
+  --secondary: #2C1F22;
+  --secondary-foreground: #F6F3EE;
+  --muted: #2C1F22;
+  --muted-foreground: #A89B96;
+  --accent: #332326;
+  --accent-foreground: #F6F3EE;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #3A2B2E;
+  --input: #3A2B2E;
+  --ring: #D31D25;
+  --highlight: #E52E36;
+  --highlight-foreground: #FFFFFF;
+  --burgundy: #36080E;
+  --burgundy-foreground: #FFFFFF;
+  --warm: #201719;
+  --warm-foreground: #F6F3EE;
+  --footer: #0D0709;
+  --footer-foreground: #FAF4EB;
+  --footer-muted: #8E7F7C;
+  --footer-border: #2B161B;
+  --overlay: rgba(0, 0, 0, 0.8);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  button, a, input {
+    font: inherit;
+  }
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(180, 160, 150, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(180, 160, 150, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
