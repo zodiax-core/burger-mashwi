@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, MapPin, User, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,14 +15,34 @@ type CheckoutModalProps = {
   items: OrderItem[];
   total: number;
   lang: "ar" | "en";
+  initialAddress?: string;
+  initialCoords?: { lat: number; lng: number } | null;
 };
 
-export function CheckoutModal({ open, onClose, items, total, lang }: CheckoutModalProps) {
+export function CheckoutModal({
+  open,
+  onClose,
+  items,
+  total,
+  lang,
+  initialAddress = "",
+  initialCoords = null,
+}: CheckoutModalProps) {
   const [name, setName] = useState("");
-  const [address, setAddress] = useState("");
-  const [geoCoords, setGeoCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [address, setAddress] = useState(initialAddress);
+  const [geoCoords, setGeoCoords] = useState<{ lat: number; lng: number } | null>(initialCoords);
   const [isLocating, setIsLocating] = useState(false);
   const [locError, setLocError] = useState<string | null>(null);
+
+  // Synchronize when initial props change
+  useEffect(() => {
+    if (initialAddress && !address) {
+      setAddress(initialAddress);
+    }
+    if (initialCoords && !geoCoords) {
+      setGeoCoords(initialCoords);
+    }
+  }, [open, initialAddress, initialCoords]);
 
   const isAr = lang === "ar";
   const currency = isAr ? "ر.س" : "SAR";
@@ -117,16 +137,18 @@ export function CheckoutModal({ open, onClose, items, total, lang }: CheckoutMod
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-[#120507]/65 backdrop-blur-md will-change-[opacity]"
           />
 
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 35, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 35, scale: 0.96 }}
+            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
             dir={isAr ? "rtl" : "ltr"}
-            className="relative w-full max-w-lg overflow-hidden rounded-t-3xl sm:rounded-3xl border border-border bg-card px-4 pt-4 pb-5 sm:p-6 shadow-2xl z-10"
+            className="relative w-full max-w-lg overflow-hidden rounded-t-3xl sm:rounded-3xl border border-border bg-card px-4 pt-4 pb-5 sm:p-6 shadow-2xl z-10 will-change-[transform,opacity]"
           >
             {/* Mobile handle */}
             <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-muted-foreground/25 sm:hidden" />

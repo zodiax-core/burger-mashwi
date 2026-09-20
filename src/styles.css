@@ -11,8 +11,8 @@
  */
 
 @theme inline {
-  --font-sans: "Tajawal", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Tajawal", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Arial", "Arial Regular", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Arial", "Arial Black", -apple-system, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -131,8 +131,8 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-    font-family: var(--font-sans);
-    letter-spacing: -0.01em;
+    font-family: "Arial", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    letter-spacing: 0;
     margin: 0;
     -webkit-tap-highlight-color: transparent;
   }

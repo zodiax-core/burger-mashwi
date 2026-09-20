@@ -39,9 +39,9 @@ export function ProductModal({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-[#120507]/65 backdrop-blur-md will-change-[opacity]"
           />
 
           {/* Bottom Sheet — 80% screen height */}
@@ -50,9 +50,9 @@ export function ProductModal({
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
-            transition={{ type: "spring", damping: 28, stiffness: 300 }}
+            transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
             dir={isAr ? "rtl" : "ltr"}
-            className="relative z-10 flex h-[80vh] max-h-[80vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-[2rem] border-t border-border bg-card shadow-2xl mx-auto"
+            className="relative z-10 flex h-[80vh] max-h-[80vh] w-full max-w-3xl flex-col overflow-hidden rounded-t-[2rem] border-t border-border bg-card shadow-2xl mx-auto will-change-[transform]"
           >
           {/* Handle bar */}
           <div className="mx-auto mt-2.5 h-1 w-12 rounded-full bg-muted-foreground/25" />

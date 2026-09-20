@@ -368,16 +368,6 @@ export const menuCategories: MenuCategory[] = [
         badge: "حار / Spicy",
       },
       {
-        id: "crispy-fries",
-        name: "بطاطس كرسبي",
-        enName: "Crispy Fries",
-        description: "بطاطس مقلية ذهبية مقرمشة ولذيذة",
-        enDescription: "Signature golden crispy fries fried to perfection",
-        price: 6,
-        calories: 340,
-        image: crispyFriesImg,
-      },
-      {
         id: "cheese-fries",
         name: "بطاطس بالجبن",
         enName: "Cheese Fries",
@@ -449,5 +439,40 @@ export const menuCategories: MenuCategory[] = [
     enEyebrow: "Instant Refreshment",
     image: waterImage,
     products: [waterProduct],
+  },
+];
+
+export const popularProducts: Product[] = [
+  waterProduct,
+  {
+    id: "fries-small",
+    name: "بطاطس مقلية",
+    enName: "Crispy Fries",
+    description: "بطاطس مقلية طازجة وذهبية مقرمشة",
+    enDescription: "Freshly cooked golden crispy fries",
+    price: 4,
+    calories: 160,
+    image: friesSmallImg,
+  },
+  {
+    id: "cheese-fries",
+    name: "بطاطس بالجبن",
+    enName: "Cheese Fries",
+    description: "بطاطس ذهبية مغطاة بصوص جبنة الشيدر الذائبة والشهية",
+    enDescription: "Golden fries drizzled generously with warm rich cheddar cheese sauce",
+    price: 9,
+    calories: 410,
+    image: cheeseFriesImg,
+    badge: "الأكثر طلباً",
+  },
+  {
+    id: "onion-rings",
+    name: "حلقات بصل مقرمشة",
+    enName: "Crispy Onion Rings",
+    description: "حلقات بصل طازجة مقلية بطبقة بقسماط مقرمشة",
+    enDescription: "Crispy battered and deep-fried savory golden onion rings",
+    price: 6,
+    calories: 340,
+    image: sidesImage,
   },
 ];
