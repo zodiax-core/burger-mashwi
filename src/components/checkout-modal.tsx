@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, MapPin, User, CheckCircle2, Loader2, MessageCircle } from "lucide-react";
+import { X, MapPin, User, CheckCircle2, Loader2, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/data/menu";
 
@@ -29,6 +29,7 @@ export function CheckoutModal({
   initialCoords = null,
 }: CheckoutModalProps) {
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
   const [address, setAddress] = useState(initialAddress);
   const [geoCoords, setGeoCoords] = useState<{ lat: number; lng: number } | null>(initialCoords);
   const [isLocating, setIsLocating] = useState(false);
@@ -92,6 +93,7 @@ export function CheckoutModal({
       text = `🍔 *طلب جديد - برجر مشوي*\n`;
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
       text += `👤 *الاسم:* ${name.trim()}\n`;
+      if (phone.trim()) text += `📱 *رقم الجوال:* ${phone.trim()}\n`;
       text += `📍 *العنوان:* ${address.trim() || "غير محدد"}\n`;
       if (mapLink) text += `🗺️ *الموقع على الخريطة:*\n${mapLink}\n`;
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
@@ -109,6 +111,7 @@ export function CheckoutModal({
       text = `🍔 *New Order - Burger Mashwi*\n`;
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
       text += `👤 *Name:* ${name.trim()}\n`;
+      if (phone.trim()) text += `📱 *Phone:* ${phone.trim()}\n`;
       text += `📍 *Address:* ${address.trim() || "Not specified"}\n`;
       if (mapLink) text += `🗺️ *Google Maps Location:*\n${mapLink}\n`;
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
@@ -188,6 +191,24 @@ export function CheckoutModal({
                     onChange={(e) => setName(e.target.value)}
                     placeholder={isAr ? "مثال: عبد العزيز" : "e.g. John Doe"}
                     className="w-full rounded-xl border border-input bg-muted/40 ps-9 pe-4 py-2 text-xs sm:text-sm font-medium text-foreground outline-none transition focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/20"
+                  />
+                </div>
+              </div>
+
+              {/* Phone Field */}
+              <div>
+                <label className="block text-[10px] sm:text-xs font-black uppercase text-muted-foreground mb-1">
+                  {isAr ? "رقم الجوال" : "Phone Number"}
+                </label>
+                <div className="relative">
+                  <Phone className="absolute start-3 top-1/2 -translate-y-1/2 size-3.5 text-muted-foreground" />
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder={isAr ? "مثال: 0501234567" : "e.g. 0501234567"}
+                    className="w-full rounded-xl border border-input bg-muted/40 ps-9 pe-4 py-2 text-xs sm:text-sm font-medium text-foreground outline-none transition focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/20"
+                    dir="ltr"
                   />
                 </div>
               </div>

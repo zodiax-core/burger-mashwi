@@ -15,6 +15,7 @@ import {
   Flame,
   MessageCircle,
   HelpCircle,
+  Headset,
 } from "lucide-react";
 import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
@@ -67,7 +68,7 @@ const translations = {
     restaurantName: "برجر مشوي",
     location: "شارع محمد بن عبدالوهاب - حي الطيبة",
     deliveryInfo: "توصيل سريع لجميع الأحياء",
-    workingHours: "يومياً: من 15:00 ظهراً — 4:00 صباحاً",
+    workingHours: "يومياً: من 3:30 عصراً — 4:00 صباحاً",
     allRightsReserved: "جميع الحقوق محفوظة.",
     add: "أضف",
     calories: "سعرة",
@@ -103,7 +104,7 @@ const translations = {
     restaurantName: "Burger Mashwi",
     location: "Mohammad Bin Abdulwahab St - Al Taiba District",
     deliveryInfo: "Fast delivery to all districts",
-    workingHours: "Daily: 15:00 (Noon) — 4:00 AM",
+    workingHours: "Daily: 3:30 PM (Noon) — 4:00 AM",
     allRightsReserved: "All rights reserved.",
     add: "Add",
     calories: "Cal",
@@ -157,23 +158,23 @@ function Header({
 
         {/* Actions: Phone Number, Lang toggle & Cart button */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          {/* Direct Phone Call Button - Clean, no glow */}
+          {/* Customer Support Call Button */}
           <a
-            href="tel:0505797694"
+            href="tel:+923284226009"
             className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-[#4A3E3D] hover:text-primary transition-colors py-1 px-1"
             dir="ltr"
-            title={lang === "ar" ? "اتصل بنا: 0505797694" : "Call us: 0505797694"}
+            title={lang === "ar" ? "خدمة العملاء: +92 328 4226009" : "Customer Support: +92 328 4226009"}
           >
-            <Phone className="size-3.5 text-primary" />
-            <span className="tracking-wide font-sans">0505797694</span>
+            <Headset className="size-3.5 text-primary" />
+            <span className="tracking-wide font-sans">+92 328 4226009</span>
           </a>
 
           <a
-            href="tel:0505797694"
+            href="tel:+923284226009"
             className="sm:hidden grid size-8 place-items-center text-muted-foreground hover:text-primary transition-colors"
-            aria-label="Call Burger Mashwi"
+            aria-label="Customer Support"
           >
-            <Phone className="size-4 text-primary" />
+            <Headset className="size-4 text-primary" />
           </a>
 
           {/* Language Toggle */}
@@ -1000,8 +1001,10 @@ function Footer({ lang }: { lang: Language }) {
               <p>{t.location}</p>
             </div>
             <div className="flex gap-3">
-              <Phone className="size-5 shrink-0 text-primary" />
-              <p dir="ltr">0505797694 / 0563940877</p>
+              <Headset className="size-5 shrink-0 text-primary" />
+              <a href="tel:+923284226009" dir="ltr" className="hover:text-primary transition-colors">
+                +92 328 4226009
+              </a>
             </div>
             <div className="flex gap-3">
               <Truck className="size-5 shrink-0 text-primary" />

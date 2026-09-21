@@ -6,6 +6,8 @@ import wrapImage from "@/assets/category-wrap.png";
 
 // ─── Product Images ───────────────────────────────────────────────────────────
 import waterImage from "@/assets/water-bottle.png";
+import pepsiImg from "@/assets/pepsi.png";
+import marindaImg from "@/assets/marinda.png";
 
 // Burger singles
 import chickenBurgerImg from "@/assets/chicken-burger.webp";
@@ -72,9 +74,33 @@ export const waterProduct: Product = {
   enName: "Mineral Water",
   description: "مياه شرب نقية ومنعشة",
   enDescription: "Pure and refreshing mineral drinking water",
-  price: 2,
+  price: 1,
   calories: 0,
   image: waterImage,
+  badge: "بارد / Cold",
+};
+
+export const pepsiProduct: Product = {
+  id: "pepsi",
+  name: "بيبسي",
+  enName: "Pepsi",
+  description: "مشروب بيبسي غازي منعش وبارد",
+  enDescription: "Refreshing ice-cold Pepsi can",
+  price: 3,
+  calories: 150,
+  image: pepsiImg,
+  badge: "بارد / Cold",
+};
+
+export const marindaProduct: Product = {
+  id: "marinda",
+  name: "ميريندا برتقال",
+  enName: "Mirinda Orange",
+  description: "مشروب ميريندا برتقال غازي منعش وبارد",
+  enDescription: "Crisp and fruity ice-cold Mirinda orange can",
+  price: 3,
+  calories: 160,
+  image: marindaImg,
   badge: "بارد / Cold",
 };
 
@@ -437,12 +463,14 @@ export const menuCategories: MenuCategory[] = [
     enTitle: "Beverages",
     eyebrow: "انتعاش فوري",
     enEyebrow: "Instant Refreshment",
-    image: waterImage,
-    products: [waterProduct],
+    image: pepsiImg,
+    products: [pepsiProduct, marindaProduct, waterProduct],
   },
 ];
 
 export const popularProducts: Product[] = [
+  pepsiProduct,
+  marindaProduct,
   waterProduct,
   {
     id: "fries-small",
