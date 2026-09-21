@@ -158,21 +158,34 @@ function Header({
 
         {/* Actions: Phone Number, Lang toggle & Cart button */}
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-          {/* Customer Support Call Button */}
+          {/* Customer Support WhatsApp Link */}
           <a
-            href="tel:+923284226009"
+            href={`https://wa.me/923284226009?text=${encodeURIComponent(
+              lang === "ar"
+                ? "مرحباً، أود التواصل مع خدمة العملاء / تقديم شكوى بخصوص برجر مشوي."
+                : "Hello, I would like to contact customer support regarding Burger Mashwi."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-[#4A3E3D] hover:text-primary transition-colors py-1 px-1"
             dir="ltr"
-            title={lang === "ar" ? "خدمة العملاء: +92 328 4226009" : "Customer Support: +92 328 4226009"}
+            title={lang === "ar" ? "خدمة العملاء والشكاوى: +92 328 4226009" : "Customer Support / Complaints: +92 328 4226009"}
           >
             <Headset className="size-3.5 text-primary" />
             <span className="tracking-wide font-sans">+92 328 4226009</span>
           </a>
 
           <a
-            href="tel:+923284226009"
+            href={`https://wa.me/923284226009?text=${encodeURIComponent(
+              lang === "ar"
+                ? "مرحباً، أود التواصل مع خدمة العملاء / تقديم شكوى بخصوص برجر مشوي."
+                : "Hello, I would like to contact customer support regarding Burger Mashwi."
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="sm:hidden grid size-8 place-items-center text-muted-foreground hover:text-primary transition-colors"
             aria-label="Customer Support"
+            title={lang === "ar" ? "خدمة العملاء والشكاوى" : "Customer Support / Complaints"}
           >
             <Headset className="size-4 text-primary" />
           </a>
@@ -331,10 +344,10 @@ function CategoryNav({
   }, [activeId]);
 
   return (
-    <div className="sticky top-[52px] sm:top-[64px] z-30 bg-primary shadow-sm" dir="ltr">
+    <div className="sticky top-[52px] sm:top-[64px] z-30 bg-primary shadow-sm" dir={isAr ? "rtl" : "ltr"}>
       <div
         ref={navRef}
-        className="flex overflow-x-auto gap-0.5 py-2 px-2"
+        className="flex overflow-x-auto gap-1 py-2 px-3 sm:px-6 max-w-7xl mx-auto"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {menuCategories.map((cat) => (
@@ -612,9 +625,9 @@ function CategorySection({
 
   return (
     <section id={category.id} className="scroll-mt-24">
-      {/* Cluckin style curved deep burgundy pill header with food image overlapping (overflow-visible & high z-index) */}
-      <div className="relative mb-8 flex h-16 sm:h-20 items-center justify-between rounded-[1.5rem] bg-[#4C0910] px-5 sm:px-8 text-white shadow-md overflow-visible">
-        <div className="z-10">
+      {/* Cluckin style curved deep burgundy pill header with food image overlapping (overflow-visible, z-10 lower than category-bar) */}
+      <div className="relative z-10 mb-8 flex h-16 sm:h-20 items-center justify-between rounded-[1.5rem] bg-[#4C0910] px-5 sm:px-8 text-white shadow-md overflow-visible">
+        <div className="relative z-10">
           <span className="text-[10px] sm:text-xs font-bold text-amber-300 uppercase tracking-wider">
             {isAr ? category.eyebrow : category.enEyebrow}
           </span>
@@ -623,8 +636,8 @@ function CategorySection({
           </h2>
         </div>
 
-        {/* Overlapping food thumbnail — high z-index and overflow-visible so it is never cut off */}
-        <div className="absolute end-2 sm:end-6 -bottom-3 sm:-bottom-5 pointer-events-none z-30">
+        {/* Overlapping food thumbnail — overflow-visible so it is never cut off, z-10 lower than sticky category-bar (z-30) */}
+        <div className="absolute end-2 sm:end-6 -bottom-3 sm:-bottom-5 pointer-events-none z-10">
           <img
             src={category.image}
             alt=""
@@ -1002,7 +1015,18 @@ function Footer({ lang }: { lang: Language }) {
             </div>
             <div className="flex gap-3">
               <Headset className="size-5 shrink-0 text-primary" />
-              <a href="tel:+923284226009" dir="ltr" className="hover:text-primary transition-colors">
+              <a
+                href={`https://wa.me/923284226009?text=${encodeURIComponent(
+                  lang === "ar"
+                    ? "مرحباً، أود التواصل مع خدمة العملاء / تقديم شكوى بخصوص برجر مشوي."
+                    : "Hello, I would like to contact customer support regarding Burger Mashwi."
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                dir="ltr"
+                className="hover:text-primary transition-colors"
+                title={lang === "ar" ? "خدمة العملاء والشكاوى" : "Customer Support / Complaints"}
+              >
                 +92 328 4226009
               </a>
             </div>
