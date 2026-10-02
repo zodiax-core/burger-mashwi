@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { X, MapPin, User, CheckCircle2, Loader2, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/data/menu";
+import { getDeliveryStatus } from "@/lib/delivery";
 
 export type OrderItem = {
   product: Product;
@@ -48,6 +49,8 @@ export function CheckoutModal({
   const isAr = lang === "ar";
   const currency = isAr ? "ر.س" : "SAR";
 
+  const deliveryStatus = getDeliveryStatus(geoCoords);
+
   const handleGetLocation = () => {
     if (!navigator.geolocation) {
       setLocError(isAr ? "خدمة تحديد الموقع غير مدعومة في جهازك" : "Geolocation is not supported by your device");
@@ -59,9 +62,15 @@ export function CheckoutModal({
       (position) => {
         setIsLocating(false);
         const { latitude, longitude } = position.coords;
-        setGeoCoords({ lat: latitude, lng: longitude });
+        const newCoords = { lat: latitude, lng: longitude };
+        setGeoCoords(newCoords);
+        const status = getDeliveryStatus(newCoords);
         if (!address) {
-          setAddress(isAr ? "موقعي الحالي (تم التحديد بنجاح عبر GPS)" : "Current Location (GPS Detected)");
+          setAddress(
+            isAr
+              ? `موقعي الحالي (${status.isFree ? "توصيل مجاني" : "توصيل مدفوع"} - ${status.distanceKm} كم)`
+              : `Current Location (${status.isFree ? "Free Delivery" : "Paid Delivery"} - ${status.distanceKm} km)`
+          );
         }
       },
       (error) => {
@@ -87,6 +96,12 @@ export function CheckoutModal({
       ? `https://maps.google.com/?q=${geoCoords.lat},${geoCoords.lng}`
       : null;
 
+    const deliveryText = deliveryStatus.hasLocation
+      ? (deliveryStatus.isFree
+          ? (isAr ? `مجاني (المسافة: ~${deliveryStatus.distanceKm} كم)` : `Free (Distance: ~${deliveryStatus.distanceKm} km)`)
+          : (isAr ? `مدفوع (المسافة: ~${deliveryStatus.distanceKm} كم - أكثر من 10 كم)` : `Paid (Distance: ~${deliveryStatus.distanceKm} km - over 10km)`))
+      : (isAr ? "مجاني لأقل من 10 كم" : "Free under 10km");
+
     let text = "";
 
     if (isAr) {
@@ -103,7 +118,7 @@ export function CheckoutModal({
       });
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
       text += `💰 *المجموع:* ${total} ${currency}\n`;
-      text += `🚚 *التوصيل:* مجاني\n`;
+      text += `🚚 *التوصيل:* ${deliveryText}\n`;
       text += `💳 *المبلغ الإجمالي:* ${total} ${currency}\n`;
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
       text += `شكراً لاختياركم برجر مشوي! أرجو تأكيد الطلب.`;
@@ -121,7 +136,7 @@ export function CheckoutModal({
       });
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
       text += `💰 *Subtotal:* ${total} ${currency}\n`;
-      text += `🚚 *Delivery:* Free\n`;
+      text += `🚚 *Delivery:* ${deliveryText}\n`;
       text += `💳 *Grand Total:* ${total} ${currency}\n`;
       text += `━━━━━━━━━━━━━━━━━━━━━\n`;
       text += `Thank you for choosing Burger Mashwi! Please confirm my order.`;
@@ -251,9 +266,32 @@ export function CheckoutModal({
                 </div>
 
                 {geoCoords && (
-                  <div className="mt-1.5 flex items-center gap-1.5 rounded-lg bg-emerald-500/10 px-2.5 py-1.5 text-[10px] sm:text-xs font-bold text-emerald-700">
-                    <CheckCircle2 className="size-3.5 shrink-0" />
-                    <span>{isAr ? "تم تحديد موقعك بنجاح" : "GPS location detected successfully"}</span>
+                  <div
+                    className={`mt-1.5 flex items-center justify-between rounded-lg px-2.5 py-1.5 text-[10px] sm:text-xs font-bold ${
+                      deliveryStatus.isFree
+                        ? "bg-emerald-500/10 text-emerald-800"
+                        : "bg-amber-500/10 text-amber-900"
+                    }`}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <CheckCircle2 className="size-3.5 shrink-0 text-emerald-600" />
+                      <span>
+                        {isAr
+                          ? `تم تحديد موقعك (${deliveryStatus.distanceKm} كم)`
+                          : `GPS detected (${deliveryStatus.distanceKm} km)`}
+                      </span>
+                    </div>
+                    <span
+                      className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
+                        deliveryStatus.isFree
+                          ? "bg-emerald-600 text-white"
+                          : "bg-amber-600 text-white"
+                      }`}
+                    >
+                      {deliveryStatus.isFree
+                        ? (isAr ? "مجاني" : "Free")
+                        : (isAr ? "مدفوع" : "Paid")}
+                    </span>
                   </div>
                 )}
 
@@ -279,6 +317,20 @@ export function CheckoutModal({
                       </span>
                     </div>
                   ))}
+                </div>
+
+                {/* Delivery Line in Snapshot */}
+                <div className="mt-1.5 pt-1.5 border-t border-border/50 flex justify-between items-center text-[10px] sm:text-xs">
+                  <span className="text-muted-foreground font-bold">{isAr ? "التوصيل" : "Delivery"}</span>
+                  <span
+                    className={`font-black ${
+                      deliveryStatus.isFree ? "text-emerald-600" : "text-amber-700"
+                    }`}
+                  >
+                    {deliveryStatus.hasLocation
+                      ? (isAr ? deliveryStatus.statusTextAr : deliveryStatus.statusText)
+                      : (isAr ? "مجاني لأقل من 10 كم" : "Free Under 10km")}
+                  </span>
                 </div>
               </div>
             </div>

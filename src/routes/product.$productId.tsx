@@ -37,7 +37,14 @@ function ProductPage() {
   return (
     <div className="min-h-screen bg-[#FDF9F3] text-foreground pb-20">
       <header className="sticky top-0 z-40 border-b border-[#EDE4D6] bg-[#FDF9F3]/95 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-2xl items-center justify-between px-4">
+        {/* Most-Top Nav Tagline */}
+        <div
+          className="w-full bg-[#3D060C] text-[#FAF5EB] py-1 px-3 text-center text-[11px] sm:text-xs font-semibold tracking-wide border-b border-[#520B13]/60 select-none"
+          data-tagline="Free Deleveriy Under 10km"
+        >
+          {isAr ? "توصيل مجاني لأقل من 10 كم" : "Free Deleveriy Under 10km"}
+        </div>
+        <div className="mx-auto flex h-14 sm:h-16 max-w-2xl items-center justify-between px-4">
           <Button asChild variant="ghost" size="icon" className="rounded-full">
             <Link to="/">
               {isAr ? <ArrowRight className="size-5" /> : <ArrowLeft className="size-5" />}

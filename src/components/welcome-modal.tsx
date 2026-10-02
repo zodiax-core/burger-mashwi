@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { MapPin, Check, Loader2, ArrowRight, ArrowLeft } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
+import { getDeliveryStatus, type DeliveryStatus } from "@/lib/delivery";
 
 type WelcomeModalProps = {
   open: boolean;
@@ -17,6 +18,7 @@ export function WelcomeModal({ open, onClose, defaultLang = "ar" }: WelcomeModal
   const [selectedLang, setSelectedLang] = useState<"ar" | "en">(defaultLang);
   const [address, setAddress] = useState("");
   const [coords, setCoords] = useState<{ lat: number; lng: number } | null>(null);
+  const [deliveryStatus, setDeliveryStatus] = useState<DeliveryStatus | null>(null);
   const [isLocating, setIsLocating] = useState(false);
   const [locSuccess, setLocSuccess] = useState(false);
   const [locError, setLocError] = useState<string | null>(null);
@@ -40,11 +42,14 @@ export function WelcomeModal({ open, onClose, defaultLang = "ar" }: WelcomeModal
       (position) => {
         setIsLocating(false);
         const { latitude, longitude } = position.coords;
-        setCoords({ lat: latitude, lng: longitude });
+        const newCoords = { lat: latitude, lng: longitude };
+        setCoords(newCoords);
+        const status = getDeliveryStatus(newCoords);
+        setDeliveryStatus(status);
         setLocSuccess(true);
         const detectedLabel = isAr
-          ? "موقعي الحالي (تم التحديد بنجاح عبر GPS)"
-          : "Current Location (GPS Detected)";
+          ? `موقعي الحالي (${status.isFree ? "توصيل مجاني" : "توصيل مدفوع"} - ${status.distanceKm} كم)`
+          : `Current Location (${status.isFree ? "Free Delivery" : "Paid Delivery"} - ${status.distanceKm} km)`;
         setAddress(detectedLabel);
       },
       (error) => {
@@ -198,9 +203,26 @@ export function WelcomeModal({ open, onClose, defaultLang = "ar" }: WelcomeModal
                 </button>
               ) : (
                 <div className="space-y-1.5">
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-600">
-                    <Check className="size-3.5 stroke-[3]" />
-                    <span>{isAr ? "تم تحديد موقعك بنجاح" : "Location detected successfully"}</span>
+                  <div className="flex items-center justify-between gap-1.5 rounded-lg bg-white p-2 border border-border/80">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-foreground">
+                      <Check className="size-3.5 stroke-[3] text-emerald-600 shrink-0" />
+                      <span>
+                        {isAr
+                          ? `تم تحديد موقعك (${deliveryStatus?.distanceKm ?? 0} كم)`
+                          : `Location detected (${deliveryStatus?.distanceKm ?? 0} km)`}
+                      </span>
+                    </div>
+                    <span
+                      className={`text-[10px] font-black px-2 py-0.5 rounded-full ${
+                        deliveryStatus?.isFree
+                          ? "bg-emerald-100 text-emerald-700"
+                          : "bg-amber-100 text-amber-800"
+                      }`}
+                    >
+                      {deliveryStatus?.isFree
+                        ? (isAr ? "توصيل مجاني" : "Free Delivery")
+                        : (isAr ? "توصيل مدفوع" : "Paid Delivery")}
+                    </span>
                   </div>
                   <input
                     type="text"

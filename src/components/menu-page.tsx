@@ -34,6 +34,7 @@ import {
 import { ProductModal } from "@/components/product-modal";
 import { CheckoutModal, type OrderItem } from "@/components/checkout-modal";
 import { WelcomeModal } from "@/components/welcome-modal";
+import { getDeliveryStatus, RESTAURANT_LOCATION } from "@/lib/delivery";
 
 type Cart = Record<string, number>;
 type Language = "ar" | "en";
@@ -53,6 +54,9 @@ const translations = {
     tax: "الضريبة (15% مشمولة)",
     deliveryFee: "رسوم التوصيل",
     free: "مجاناً",
+    paid: "مدفوع",
+    freeUnder10km: "مجاني لأقل من 10 كم",
+    topDeliveryTagline: "توصيل مجاني لأقل من 10 كم",
     grandTotal: "المبلغ الإجمالي",
     checkout: "إتمام الطلب",
     viewCart: "عرض السلة",
@@ -66,9 +70,9 @@ const translations = {
     currency: "ر.س",
     categories: "الأقسام",
     restaurantName: "برجر مشوي",
-    location: "شارع محمد بن عبدالوهاب - حي الطيبة",
-    deliveryInfo: "توصيل سريع لجميع الأحياء",
-    workingHours: "يومياً: من 3:30 عصراً — 4:00 صباحاً",
+    location: "شارع 22، حي العقربية، الخبر 34217",
+    deliveryInfo: "توصيل مجاني لأقل من 10 كم",
+    workingHours: "يومياً: من 1:00 ظهراً — 4:00 صباحاً",
     allRightsReserved: "جميع الحقوق محفوظة.",
     add: "أضف",
     calories: "سعرة",
@@ -90,6 +94,9 @@ const translations = {
     tax: "VAT (15% included)",
     deliveryFee: "Delivery Fee",
     free: "Free",
+    paid: "Paid",
+    freeUnder10km: "Free under 10km",
+    topDeliveryTagline: "Free Deleveriy Under 10km",
     grandTotal: "Grand Total",
     checkout: "Checkout",
     viewCart: "View Cart",
@@ -102,9 +109,9 @@ const translations = {
     currency: "SAR",
     categories: "Categories",
     restaurantName: "Burger Mashwi",
-    location: "Mohammad Bin Abdulwahab St - Al Taiba District",
-    deliveryInfo: "Fast delivery to all districts",
-    workingHours: "Daily: 3:30 PM (Noon) — 4:00 AM",
+    location: "22 St, Al Aqrabiyah, Al Khobar 34217",
+    deliveryInfo: "Free delivery under 10km",
+    workingHours: "Daily: 1:00 PM — 4:00 AM",
     allRightsReserved: "All rights reserved.",
     add: "Add",
     calories: "Cal",
@@ -116,7 +123,7 @@ const translations = {
   },
 };
 
-/* 1. Header with sleek height, phone number, and attractive styling */
+/* 1. Header with sleek height, top tagline, phone number, and attractive styling */
 function Header({
   count,
   total,
@@ -131,8 +138,17 @@ function Header({
   setLang: (l: Language) => void;
 }) {
   const t = translations[lang];
+  const isAr = lang === "ar";
   return (
     <header className="sticky top-0 z-40 border-b border-[#E8DEC8]/80 bg-[#FDF9F3]/90 backdrop-blur-md shadow-[0_2px_12px_rgba(76,9,16,0.04)]">
+      {/* Most-Top Nav Tagline: Small clean text, no emojis */}
+      <div
+        className="w-full bg-[#3D060C] text-[#FAF5EB] py-1 px-3 text-center text-[11px] sm:text-xs font-semibold tracking-wide border-b border-[#520B13]/60 select-none"
+        data-tagline="Free Deleveriy Under 10km"
+      >
+        {isAr ? t.topDeliveryTagline : "Free Deleveriy Under 10km"}
+      </div>
+
       <div className="mx-auto flex h-13 sm:h-16 max-w-7xl items-center justify-between px-3 sm:px-6">
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-2 group" aria-label="Burger Mashwi Home">
@@ -670,6 +686,7 @@ function CartDrawer({
   update,
   onCheckout,
   lang,
+  userCoords,
 }: {
   open: boolean;
   close: () => void;
@@ -677,10 +694,12 @@ function CartDrawer({
   update: (id: string, delta: number) => void;
   onCheckout: () => void;
   lang: Language;
+  userCoords?: { lat: number; lng: number } | null;
 }) {
   const t = translations[lang];
   const isAr = lang === "ar";
   const currency = isAr ? "ر.س" : "SAR";
+  const deliveryStatus = getDeliveryStatus(userCoords);
 
   const allProducts = useMemo(() => {
     const map = new Map<string, Product>();
@@ -879,10 +898,25 @@ function CartDrawer({
                       </span>
                     </div>
 
-                    <div className="flex justify-between text-muted-foreground">
-                      <span>{t.deliveryFee}</span>
-                      <span className="font-black text-emerald-600 dark:text-emerald-400">
-                        {t.free}
+                    <div className="flex justify-between items-center text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <span>{t.deliveryFee}</span>
+                        {deliveryStatus.hasLocation && (
+                          <span className="text-[10px] text-muted-foreground/75 font-normal">
+                            ({deliveryStatus.distanceKm} km)
+                          </span>
+                        )}
+                      </div>
+                      <span
+                        className={`font-black ${
+                          deliveryStatus.isFree
+                            ? "text-emerald-600 dark:text-emerald-400"
+                            : "text-amber-700 dark:text-amber-400"
+                        }`}
+                      >
+                        {deliveryStatus.hasLocation
+                          ? (isAr ? deliveryStatus.statusTextAr : deliveryStatus.statusText)
+                          : (isAr ? t.freeUnder10km : t.freeUnder10km)}
                       </span>
                     </div>
 
@@ -1254,6 +1288,7 @@ export function MenuPage() {
         update={updateCart}
         onCheckout={handleCartCheckout}
         lang={lang}
+        userCoords={userLocation.coords}
       />
 
       {/* Product Detail Modal */}
