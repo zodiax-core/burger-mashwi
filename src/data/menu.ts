@@ -10,12 +10,12 @@ import pepsiImg from "@/assets/pepsi.png";
 import marindaImg from "@/assets/marinda.png";
 
 // Burger singles
-import chickenBurgerImg from "@/assets/chicken-burger.webp";
+import chickenBurgerImg from "@/assets/chicken-burger.png";
 import chickenCheeseBurgerImg from "@/assets/chicken-chesse-burger.png";
 import doubleChickenCheeseBurgerImg from "@/assets/double-chicken-chesse-burger.png";
 import beefBurgerImg from "@/assets/beef-burger.png";
 import beefCheeseBurgerImg from "@/assets/beef-chesse-burger.png";
-import doubleBeefCheeseBurgerLargeImg from "@/assets/Double Beef Cheese Burger (Large).webp";
+import doubleBeefCheeseBurgerLargeImg from "@/assets/double-beef-cheese-burger.png";
 import doubleBeefCheeseBurgerClassicImg from "@/assets/Double Beef Cheese Burger Classic.png";
 import zingerBurgerImg from "@/assets/zinger-burger.png";
 import zingerCheeseBurgerImg from "@/assets/zinger-chesse-burger.png";
@@ -34,7 +34,8 @@ import zingerRollMealImg from "@/assets/Delicious crispy zinger roll combo with 
 import tortillaMealImg from "@/assets/Flavorful chicken tortilla wrap served with fries and drink.png";
 
 // Wraps
-import zingerRollImg from "@/assets/Spicy zinger chicken tenders rolled in flatbread with special sauce.webp";
+import zingerRollImg from "@/assets/zinger-roll.png";
+import tortillaGrilledImg from "@/assets/tortilla-grilled.png";
 
 // Fries & Sides
 import crispySpicyFriesImg from "@/assets/Crispy skin-on fries coated with signature hot chili spice.png";
@@ -42,8 +43,11 @@ import crispyFriesImg from "@/assets/Crispy Fries.png";
 import cheeseFriesImg from "@/assets/Cheese Fries.png";
 import friesLargeImg from "@/assets/Fries (Large).png";
 import friesSmallImg from "@/assets/Fries (Small).png";
+import onionRingsImg from "@/assets/onion-rings.png";
 import cheeseNuggetsImg from "@/assets/Cheese Nuggets.png";
 import regularNuggetsImg from "@/assets/Regular Chicken Nuggets.png";
+import potatoWedgesImg from "@/assets/potato-wedges.png";
+import potatoWedgesCheeseImg from "@/assets/potato-wedges-cheese.png";
 
 export type Product = {
   id: string;
@@ -370,7 +374,7 @@ export const menuCategories: MenuCategory[] = [
         enDescription: "Fresh chicken wrapped in toasted tortilla bread with creamy sauce",
         price: 10,
         calories: 618,
-        image: wrapImage,
+        image: tortillaGrilledImg,
       },
     ],
   },
@@ -432,7 +436,7 @@ export const menuCategories: MenuCategory[] = [
         enDescription: "Crispy battered and deep-fried savory golden onion rings",
         price: 6,
         calories: 340,
-        image: sidesImage,
+        image: onionRingsImg,
       },
       {
         id: "cheese-nuggets",
@@ -454,6 +458,27 @@ export const menuCategories: MenuCategory[] = [
         price: 6,
         calories: 540,
         image: regularNuggetsImg,
+      },
+      {
+        id: "potato-wedges",
+        name: "بطاطس ودجز",
+        enName: "Potato Wedges",
+        description: "أصابع بطاطس ودجز مقرمشة ومتبلة بتوابل لذيذة",
+        enDescription: "Crispy seasoned golden potato wedges",
+        price: 9,
+        calories: 380,
+        image: potatoWedgesImg,
+      },
+      {
+        id: "potato-wedges-cheese",
+        name: "بطاطس ودجز بالجبن",
+        enName: "Cheese Potato Wedges",
+        description: "بطاطس ودجز مقرمشة ومتبلة مغطاة بصوص الجبن الذائب",
+        enDescription: "Crispy seasoned potato wedges topped with melted cheese sauce",
+        price: 12,
+        calories: 460,
+        image: potatoWedgesCheeseImg,
+        badge: "بالجبن",
       },
     ],
   },
@@ -501,6 +526,6 @@ export const popularProducts: Product[] = [
     enDescription: "Crispy battered and deep-fried savory golden onion rings",
     price: 6,
     calories: 340,
-    image: sidesImage,
+    image: onionRingsImg,
   },
 ];
