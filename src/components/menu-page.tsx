@@ -1048,7 +1048,7 @@ function Footer({ lang }: { lang: Language }) {
             <div className="flex gap-3">
               <MapPin className="size-5 shrink-0 text-primary" />
               <a
-                href={`https://www.google.com/maps/search/?api=1&query=${RESTAURANT_LOCATION.coords.lat},${RESTAURANT_LOCATION.coords.lng}`}
+                href="https://maps.app.goo.gl/WwAbRTyfzhMBn6ox5"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-primary transition-colors"
