@@ -71,6 +71,8 @@ function ProductPage() {
               src={product.image}
               alt={product.name}
               className="h-full w-full object-contain drop-shadow-md"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 

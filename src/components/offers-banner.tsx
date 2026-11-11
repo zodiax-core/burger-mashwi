@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import marketingBanner1 from "@/assets/Marketing-banner-deal-1-for-desktop.jpeg";
-import marketingBanner2 from "@/assets/marketing-banner-deal-2.jpeg";
+import marketingBanner1 from "@/assets/Marketing-banner-deal-1-for-desktop.webp";
+import marketingBanner2 from "@/assets/marketing-banner-deal-2.webp";
 
 const offerImages = [
   { id: "deal-1", src: marketingBanner1, alt: "Burger Mashwi Special Deal 1" },

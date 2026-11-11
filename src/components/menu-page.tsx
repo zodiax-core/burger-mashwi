@@ -20,9 +20,9 @@ import {
 import { useMemo, useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
 
-import logo from "@/assets/logo.png";
-import marketingBanner1 from "@/assets/Marketing-banner-deal-1-for-desktop.jpeg";
-import marketingBanner2 from "@/assets/marketing-banner-deal-2.jpeg";
+import logo from "@/assets/logo.webp";
+import marketingBanner1 from "@/assets/Marketing-banner-deal-1-for-desktop.webp";
+import marketingBanner2 from "@/assets/marketing-banner-deal-2.webp";
 import { Button } from "@/components/ui/button";
 import {
   menuCategories,
@@ -360,7 +360,7 @@ function CategoryNav({
   }, [activeId]);
 
   return (
-    <div className="sticky top-[52px] sm:top-[64px] z-30 bg-primary shadow-sm" dir={isAr ? "rtl" : "ltr"}>
+    <div className="sticky top-[76px] sm:top-[88px] z-30 bg-primary shadow-sm" dir={isAr ? "rtl" : "ltr"}>
       <div
         ref={navRef}
         className="flex overflow-x-auto gap-1 py-2 px-3 sm:px-6 max-w-7xl mx-auto"
@@ -640,7 +640,7 @@ function CategorySection({
   const isAr = lang === "ar";
 
   return (
-    <section id={category.id} className="scroll-mt-24">
+    <section id={category.id} className="scroll-mt-[140px]">
       {/* Cluckin style curved deep burgundy pill header with food image overlapping (overflow-visible, z-10 lower than category-bar) */}
       <div className="relative z-10 mb-8 flex h-16 sm:h-20 items-center justify-between rounded-[1.5rem] bg-[#4C0910] px-5 sm:px-8 text-white shadow-md overflow-visible">
         <div className="relative z-10">
@@ -658,6 +658,8 @@ function CategorySection({
             src={category.image}
             alt=""
             className="h-20 sm:h-32 w-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.5)] select-none"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </div>
@@ -1045,7 +1047,14 @@ function Footer({ lang }: { lang: Language }) {
           <div className="space-y-3 text-xs sm:text-sm text-[#B8A8A2]">
             <div className="flex gap-3">
               <MapPin className="size-5 shrink-0 text-primary" />
-              <p>{t.location}</p>
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${RESTAURANT_LOCATION.coords.lat},${RESTAURANT_LOCATION.coords.lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors"
+              >
+                {t.location}
+              </a>
             </div>
             <div className="flex gap-3">
               <Headset className="size-5 shrink-0 text-primary" />

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { MapPin, Check, Loader2, ArrowRight, ArrowLeft } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 import { Button } from "@/components/ui/button";
 import { getDeliveryStatus, type DeliveryStatus } from "@/lib/delivery";
 

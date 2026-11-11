@@ -1,53 +1,50 @@
 // ─── Category Header Images ──────────────────────────────────────────────────
-import burgersImage from "@/assets/category-burgers.png";
-import friesImage from "@/assets/category-fries.png";
-import sidesImage from "@/assets/category-sides.png";
-import wrapImage from "@/assets/category-wrap.png";
+import burgersImage from "@/assets/category-burgers.webp";
+import friesImage from "@/assets/category-fries.webp";
+import sidesImage from "@/assets/category-sides.webp";
+import wrapImage from "@/assets/category-wrap.webp";
 
 // ─── Product Images ───────────────────────────────────────────────────────────
-import waterImage from "@/assets/water-bottle.png";
-import pepsiImg from "@/assets/pepsi.png";
-import marindaImg from "@/assets/marinda.png";
+import waterImage from "@/assets/water-bottle.webp";
+import pepsiImg from "@/assets/pepsi.webp";
+import marindaImg from "@/assets/marinda.webp";
 
 // Burger singles
-import chickenBurgerImg from "@/assets/chicken-burger.png";
-import chickenCheeseBurgerImg from "@/assets/chicken-chesse-burger.png";
-import doubleChickenCheeseBurgerImg from "@/assets/double-chicken-chesse-burger.png";
-import beefBurgerImg from "@/assets/beef-burger.png";
-import beefCheeseBurgerImg from "@/assets/beef-chesse-burger.png";
-import doubleBeefCheeseBurgerLargeImg from "@/assets/double-beef-cheese-burger.png";
-import doubleBeefCheeseBurgerClassicImg from "@/assets/Double Beef Cheese Burger Classic.png";
-import zingerBurgerImg from "@/assets/zinger-burger.png";
-import zingerCheeseBurgerImg from "@/assets/zinger-chesse-burger.png";
+import chickenBurgerImg from "@/assets/chicken-burger.webp";
+import chickenCheeseBurgerImg from "@/assets/chicken-chesse-burger.webp";
+import doubleChickenCheeseBurgerImg from "@/assets/double-chicken-chesse-burger.webp";
+import beefBurgerImg from "@/assets/beef-burger.webp";
+import beefCheeseBurgerImg from "@/assets/beef-chesse-burger.webp";
+import doubleBeefCheeseBurgerLargeImg from "@/assets/double-beef-cheese-burger.webp";
+import zingerBurgerImg from "@/assets/zinger-burger.webp";
+import zingerCheeseBurgerImg from "@/assets/zinger-chesse-burger.webp";
 import doubleZingerBurgerImg from "@/assets/Double Zinger Burger.webp";
-import nuggetBurgerImg from "@/assets/Nugget Burger.png";
+import nuggetBurgerImg from "@/assets/Nugget Burger.webp";
 
 // Meals / combos
-import doubleChickenCheeseMealImg from "@/assets/double-chicken-chesse -burger-meal-with-fries-and-cold-drink.png";
-import doubleBeefCheeseMealImg from "@/assets/double-beef-chesse -burger-meal-with-fries-and-cold-drink.png";
-import doubleZingerSupremeMealImg from "@/assets/Double Zinger Supreme Meal.png";
-import chickenCheeseBurgerMealImg from "@/assets/Chicken cheese burger served with fries and a cold drink.png";
-import beefCheeseBurgerMealImg from "@/assets/Flame-grilled beef burger with cheese, fries, and beverage.png";
-import zingerBurgerMealImg from "@/assets/Spicy zinger burger combo with crispy fries and drink.png";
-import zingerCheeseBurgerMealImg from "@/assets/Zinger burger with cheese meal, includes fries and beverage.png";
-import zingerRollMealImg from "@/assets/Delicious crispy zinger roll combo with golden fries and drink.png";
-import tortillaMealImg from "@/assets/Flavorful chicken tortilla wrap served with fries and drink.png";
+import doubleChickenCheeseMealImg from "@/assets/double-chicken-chesse -burger-meal-with-fries-and-cold-drink.webp";
+import doubleBeefCheeseMealImg from "@/assets/double-beef-chesse -burger-meal-with-fries-and-cold-drink.webp";
+import doubleZingerSupremeMealImg from "@/assets/Double Zinger Supreme Meal.webp";
+import chickenCheeseBurgerMealImg from "@/assets/Chicken cheese burger served with fries and a cold drink.webp";
+import beefCheeseBurgerMealImg from "@/assets/Flame-grilled beef burger with cheese, fries, and beverage.webp";
+import zingerBurgerMealImg from "@/assets/Spicy zinger burger combo with crispy fries and drink.webp";
+import zingerRollMealImg from "@/assets/Delicious crispy zinger roll combo with golden fries and drink.webp";
+import tortillaMealImg from "@/assets/Flavorful chicken tortilla wrap served with fries and drink.webp";
 
 // Wraps
-import zingerRollImg from "@/assets/zinger-roll.png";
-import tortillaGrilledImg from "@/assets/tortilla-grilled.png";
+import zingerRollImg from "@/assets/zinger-roll.webp";
+import tortillaGrilledImg from "@/assets/tortilla-grilled.webp";
 
 // Fries & Sides
-import crispySpicyFriesImg from "@/assets/Crispy skin-on fries coated with signature hot chili spice.png";
-import crispyFriesImg from "@/assets/Crispy Fries.png";
-import cheeseFriesImg from "@/assets/Cheese Fries.png";
-import friesLargeImg from "@/assets/Fries (Large).png";
-import friesSmallImg from "@/assets/Fries (Small).png";
-import onionRingsImg from "@/assets/onion-rings.png";
-import cheeseNuggetsImg from "@/assets/Cheese Nuggets.png";
-import regularNuggetsImg from "@/assets/Regular Chicken Nuggets.png";
-import potatoWedgesImg from "@/assets/potato-wedges.png";
-import potatoWedgesCheeseImg from "@/assets/potato-wedges-cheese.png";
+import curlyPotatoFriesImg from "@/assets/curly-potato-fries.webp";
+import cheeseFriesImg from "@/assets/Cheese Fries.webp";
+import friesLargeImg from "@/assets/Fries (Large).webp";
+import friesSmallImg from "@/assets/Fries (Small).webp";
+import onionRingsImg from "@/assets/onion-rings.webp";
+import cheeseNuggetsImg from "@/assets/Cheese Nuggets.webp";
+import regularNuggetsImg from "@/assets/Regular Chicken Nuggets.webp";
+import potatoWedgesImg from "@/assets/potato-wedges.webp";
+import potatoWedgesCheeseImg from "@/assets/potato-wedges-cheese.webp";
 
 export type Product = {
   id: string;
@@ -223,16 +220,6 @@ export const menuCategories: MenuCategory[] = [
         badge: "دبل",
       },
       {
-        id: "double-beef-cheese-burger-10",
-        name: "برجر دبل لحم بالجبن كلاسيك",
-        enName: "Double Beef Cheese Burger Classic",
-        description: "دبل لحم مشوي بالحجم الكلاسيكي مع الجبن",
-        enDescription: "Double beef patties classic size with tasty melted cheese",
-        price: 10,
-        calories: 480,
-        image: doubleBeefCheeseBurgerClassicImg,
-      },
-      {
         id: "zinger-burger",
         name: "برجر زنجر حار",
         enName: "Zinger Burger",
@@ -316,16 +303,6 @@ export const menuCategories: MenuCategory[] = [
         image: zingerBurgerMealImg,
       },
       {
-        id: "zinger-cheese-burger-meal",
-        name: "وجبة برجر زنجر بالجبن",
-        enName: "Zinger Cheese Burger Meal",
-        description: "وجبة زنجر شهية مع الجبن السائل وبطاطس ومشروب",
-        enDescription: "Zinger burger with cheese meal, includes fries and beverage",
-        price: 15,
-        calories: 780,
-        image: zingerCheeseBurgerMealImg,
-      },
-      {
         id: "zinger-roll-meal",
         name: "وجبة رول زنجر",
         enName: "Zinger Roll Meal",
@@ -387,15 +364,14 @@ export const menuCategories: MenuCategory[] = [
     image: friesImage,
     products: [
       {
-        id: "crispy-spicy-fries",
-        name: "بطاطس كرسبي حار",
-        enName: "Crispy Spicy Fries",
-        description: "بطاطس مقرمشة متبلة ببهارات حارة خاصة ومميزة",
-        enDescription: "Crispy skin-on fries coated with signature hot chili spice",
+        id: "curly-potato-fries",
+        name: "بطاطس كيرلي",
+        enName: "Curly Potato Fries",
+        description: "بطاطس كيرلي ذهبية ومقرمشة",
+        enDescription: "Golden crispy curly potato fries",
         price: 9,
         calories: 620,
-        image: crispySpicyFriesImg,
-        badge: "حار / Spicy",
+        image: curlyPotatoFriesImg,
       },
       {
         id: "cheese-fries",
@@ -465,7 +441,7 @@ export const menuCategories: MenuCategory[] = [
         enName: "Potato Wedges",
         description: "أصابع بطاطس ودجز مقرمشة ومتبلة بتوابل لذيذة",
         enDescription: "Crispy seasoned golden potato wedges",
-        price: 9,
+        price: 6,
         calories: 380,
         image: potatoWedgesImg,
       },
@@ -475,7 +451,7 @@ export const menuCategories: MenuCategory[] = [
         enName: "Cheese Potato Wedges",
         description: "بطاطس ودجز مقرمشة ومتبلة مغطاة بصوص الجبن الذائب",
         enDescription: "Crispy seasoned potato wedges topped with melted cheese sauce",
-        price: 12,
+        price: 9,
         calories: 460,
         image: potatoWedgesCheeseImg,
         badge: "بالجبن",

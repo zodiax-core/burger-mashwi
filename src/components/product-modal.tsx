@@ -84,6 +84,8 @@ export function ProductModal({
                 src={product.image}
                 alt={isAr ? product.name : product.enName}
                 className="h-full w-full object-contain drop-shadow-md"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
