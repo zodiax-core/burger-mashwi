@@ -369,7 +369,7 @@ export const menuCategories: MenuCategory[] = [
         enName: "Curly Potato Fries",
         description: "بطاطس كيرلي ذهبية ومقرمشة",
         enDescription: "Golden crispy curly potato fries",
-        price: 9,
+        price: 6,
         calories: 620,
         image: curlyPotatoFriesImg,
       },
